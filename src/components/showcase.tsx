@@ -6,7 +6,7 @@ import { FiChevronsRight } from "react-icons/fi";
 
 function buldTabItem() {
   return (
-    <div className="card w-full flex flex-row hover:underline rounded border-orange-200 dark:border-default drop-shadow-md hover:shadow-md shadow-inner">
+    <div className="card w-full flex flex-row hover:underline rounded border-emerald-200 dark:border-default drop-shadow-md hover:shadow-md shadow-inner">
       <Image
         classNames={{ img: "object-cover max-w-[6em] h-full rounded-l-md" }}
         radius="none"
@@ -34,7 +34,7 @@ function buildTabContent({ tabItems }: any) {
   const tabContent = (
     <>
       <Link href={"/"}>
-        <div className="card w-full flex flex-row hover:underline rounded border-orange-200 dark:border-default drop-shadow-md hover:shadow-md shadow-inner">
+        <div className="card w-full flex flex-row hover:underline rounded border-emerald-200 dark:border-default drop-shadow-md hover:shadow-md shadow-inner">
           <Image
             classNames={{ img: "object-cover max-w-[6em] h-full rounded-l-md" }}
             radius="none"

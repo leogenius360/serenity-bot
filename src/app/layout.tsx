@@ -42,8 +42,8 @@ export default function RootLayout({
         </Providers>
 
         <footer className="card border-none border-t-1 py-3 px-4">
-          <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-center md:justify-between gap-x-6 gap-y-2 text-sm">
-            <div className="inline-flex flex-nowrap gap-x-6">
+          <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-center lg:justify-between gap-x-16 gap-y-2 text-sm">
+            <div className="inline-flex flex-nowrap gap-x-4">
               {siteFooter.termsAndConditions.map((item) => (
                 <Link
                   target="blank"
@@ -57,8 +57,8 @@ export default function RootLayout({
               ))}
             </div>
 
-            <div className="inline-flex flex-nowrap gap-x-6">
-              {siteFooter.termsAndConditions.map((item) => (
+            <div className="inline-flex flex-nowrap gap-x-4">
+              {siteFooter.socialLinks.map((item) => (
                 <Link
                   target="blank"
                   key={item.href}

@@ -94,7 +94,7 @@ export default function Home() {
           <h3 className="font-bold py-3">About Brainbox Research Institute</h3>
 
           <div className=" bg-transparent grid sm:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-3 w-full">
-            <div className="card rounded-md bg-transparent w-full px-5 py-4 border-orange-200 dark:border-default drop-shadow-md shadow-inner">
+            <div className="card rounded-md bg-transparent w-full px-5 py-4 border-emerald-200 dark:border-default drop-shadow-md shadow-inner">
               <p>
                 Brainbox Research Institute (BBRI) is a limited liability
                 corporate research organization founded to promote academic and
@@ -112,14 +112,14 @@ export default function Home() {
                 entities are among our target audiences.
               </p>
             </div>
-            <div className="card rounded-md bg-transparent w-full px-5 py-4 border-orange-200 dark:border-default drop-shadow-md shadow-inner">
+            <div className="card rounded-md bg-transparent w-full px-5 py-4 border-emerald-200 dark:border-default drop-shadow-md shadow-inner">
               <p>
                 Our office is currently in Wa, Ghana&apos;s Upper West Region,
                 near RST Café and Pet Vero Guest House – Kpaguri residential
                 extension area.
               </p>
             </div>
-            <div className="card rounded-md bg-transparent w-full px-5 py-4 border-orange-200 dark:border-default drop-shadow-md shadow-inner">
+            <div className="card rounded-md bg-transparent w-full px-5 py-4 border-emerald-200 dark:border-default drop-shadow-md shadow-inner">
               <p>
                 Our office is currently in Wa, Ghana&apos;s Upper West Region,
                 near RST Café and Pet Vero Guest House – Kpaguri residential

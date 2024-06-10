@@ -64,21 +64,21 @@ export const siteFooter = {
             icon: "© 2024 Brainbox Research Institute",
             href: internalUrls.home,
         },
-        {
-            label: "LinkedIn",
-            icon: "© 2024 Brainbox Research Institute",
-            href: internalUrls.home,
-        },
-        {
-            label: "Google Scholar",
-            icon: "© 2024 Brainbox Research Institute",
-            href: internalUrls.home,
-        },
-        {
-            label: "Twitter | X",
-            icon: "© 2024 Brainbox Research Institute",
-            href: internalUrls.home,
-        },
+        // {
+        //     label: "LinkedIn",
+        //     icon: "© 2024 Brainbox Research Institute",
+        //     href: internalUrls.home,
+        // },
+        // {
+        //     label: "Google Scholar",
+        //     icon: "© 2024 Brainbox Research Institute",
+        //     href: internalUrls.home,
+        // },
+        // {
+        //     label: "Twitter | X",
+        //     icon: "© 2024 Brainbox Research Institute",
+        //     href: internalUrls.home,
+        // },
         {
             label: "Facebook",
             icon: "© 2024 Brainbox Research Institute",

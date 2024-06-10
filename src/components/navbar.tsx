@@ -35,6 +35,7 @@ import { FiMenu, FiPhone, FiX } from "react-icons/fi";
 import { UserProfile } from "@/components/user_profile";
 import { usePathname } from "next/navigation";
 import { SingleThemeSwitch, ThemeSwitch } from "./theme-switch";
+import { SupportButton } from "./buttons";
 
 export interface NavbarProps {
   isLoggedIn?: boolean | undefined;
@@ -48,7 +49,7 @@ export const Navbar = ({ isLoggedIn }: NavbarProps) => {
     <NextUINavbar
       isBordered
       maxWidth="2xl"
-      className="border-b-1 border-orange-100 dark:border-default shadow-md shadow-orange-100 dark:shadow-none"
+      className="border-b-1 border-emerald-100 dark:border-default shadow-md shadow-emerald-100 dark:shadow-none"
       classNames={{ wrapper: "px-2 lg:px-6" }}
     >
       <NavbarContent className="gap-1">
@@ -73,7 +74,7 @@ export const Navbar = ({ isLoggedIn }: NavbarProps) => {
             variant="faded"
             aria-label="Dropdown menu with description"
           >
-            <DropdownSection title="Actions">
+            <DropdownSection title="Menu">
               {siteConfig.navItems.map((item) => (
                 <DropdownItem key={item.label}>
                   <NextLink href={item.href}>{item.label}</NextLink>
@@ -82,8 +83,8 @@ export const Navbar = ({ isLoggedIn }: NavbarProps) => {
             </DropdownSection>
 
             <DropdownSection className="mb-0">
-              <DropdownItem key="theme" isReadOnly className="cursor-default">
-                <ThemeSwitch />
+              <DropdownItem>
+                <SupportButton />
               </DropdownItem>
             </DropdownSection>
           </DropdownMenu>
@@ -108,9 +109,9 @@ export const Navbar = ({ isLoggedIn }: NavbarProps) => {
           <NavbarItem key={item.href}>
             <NextLink
               className={clsx(
-                "text-sm hover:shadow-orange-400 dark:hover:shadow-slate-500 rounded px-2 py-1 shadow-sm",
+                "text-sm hover:shadow-emerald-400 dark:hover:shadow-slate-500 rounded px-2 py-1 shadow-sm",
                 {
-                  ["shadow-orange-400 dark:shadow-slate-500"]:
+                  ["shadow-emerald-400 dark:shadow-slate-500"]:
                     item.href === pathname,
                 },
               )}
@@ -145,19 +146,9 @@ export const Navbar = ({ isLoggedIn }: NavbarProps) => {
             Login
           </Button>
         )}
-
-        <Button
-          as={NextLink}
-          size="sm"
-          href="/"
-          radius="full"
-          color="primary"
-          variant="ghost"
-          endContent={<FiPhone />}
-          className="hidden lg:flex h-6 lg:h-7 ring-offset-1 ring-1 ring-orange-600 dark:ring-offset-gray-800 font-semibold min-w-28 text-sm dark:text-white"
-        >
-          Support
-        </Button>
+        <div className="hidden md:flex">
+          <SupportButton />
+        </div>
       </NavbarContent>
     </NextUINavbar>
   );

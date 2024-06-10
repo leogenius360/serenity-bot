@@ -124,7 +124,7 @@ export default function SignupPage() {
         </Link>
         <h1 className="font-semibold font-mono text-2xl md:text-4xl xl:text-5xl">
           Become a{" "}
-          <span className="text-orange-600">
+          <span className="text-emerald-600">
             BBRISchooler <span>🧡</span>
           </span>
         </h1>
@@ -263,7 +263,7 @@ export default function SignupPage() {
         </div>
         <button
           type="submit"
-          className="w-full bg-orange-500 text-white border rounded-full font-normal h-9 m-3 hover:bg-black hover:text-orange-500 smm:mt-0"
+          className="w-full bg-emerald-500 text-white border rounded-full font-normal h-9 m-3 hover:bg-black hover:text-emerald-500 smm:mt-0"
         >
           {isSubmitting ? "Submitting..." : "Sign Up"}
         </button>
