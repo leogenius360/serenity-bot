@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: "../favicon.ico",
-    shortcut: "../favicon-16x16.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
   keywords: siteConfig.keywords,
@@ -37,11 +37,11 @@ export default function RootLayout({
         )}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
-          <Navbar isLoggedIn />
+          <Navbar />
           {children}
         </Providers>
 
-        <footer className="card border-none border-t-1 py-3 px-4">
+        <footer className="card border-0 border-t-1 border-primary py-3 px-4">
           <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-center lg:justify-between gap-x-16 gap-y-2 text-sm">
             <div className="inline-flex flex-nowrap gap-x-4">
               {siteFooter.termsAndConditions.map((item) => (

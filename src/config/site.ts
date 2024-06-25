@@ -5,9 +5,10 @@ export const internalUrls = {
     home: "/",
 
     // Auth URLs
-    auth: "/auth",
-    login: "/auth/login",
-    signUp: "/auth/signup",
+    auth: "/accounts",
+    login: "/accounts/login",
+    signUp: "/accounts/signup",
+    forgotPassword: "/accounts/forgot-password",
 
     // Navigation URLs
     playgorund: "/playgorund",

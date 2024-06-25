@@ -1,6 +1,6 @@
+import { User as AuthUser } from "firebase/auth";
 import {
   Avatar,
-  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -8,9 +8,19 @@ import {
   DropdownTrigger,
   User,
 } from "@nextui-org/react";
-import { ThemeSwitch } from "./theme-switch";
+import { logOut } from "@/lib/authService";
+import { internalUrls } from "@/config/site";
+import { useRouter } from "next/navigation";
 
-export const UserProfile = () => {
+export const UserProfile = ({ user }: { user: AuthUser }) => {
+  const router = useRouter();
+
+  const handleLogOut = async () => {
+    logOut();
+    router.push(internalUrls.home)
+  }
+
+
   return (
     <Dropdown
       placement="bottom-end"
@@ -28,59 +38,87 @@ export const UserProfile = () => {
           <Avatar
             isBordered
             showFallback
-            className="w-6 h-6 text-tiny"
-            src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+            className="bg-transparent w-6 h-6 text-tiny"
+            src={
+              user && user.photoURL
+                ? user.photoURL
+                : "images/avatar-placeholder.jpg"
+            }
           />
         </button>
       </DropdownTrigger>
 
       <DropdownMenu variant="faded" aria-label="User profile">
-        <DropdownItem isReadOnly key="profile" className="h-14 gap-2">
+        <DropdownItem
+          key="profile"
+          showDivider
+          className="border-default cursor-default data-[hover=true]:bg-transparent data-[selectable=true]:focus:bg-transparent"
+          classNames={{ base: "bg-emerald" }}
+        >
           <User
-            name="Junior Leo"
-            description="jnrleo@geniustechspace.com"
+            name={user && user.displayName ? user.displayName : "Anonymous"}
+            description={
+              user && user.email
+                ? user.email
+                : `${user?.displayName}@serenity-bot.com`
+            }
             classNames={{
-              name: "text-default-600",
+              // base: "bg-danger p-4",
+              name: "font-semibold",
               description: "text-default-500",
             }}
             avatarProps={{
               size: "sm",
-              src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+              src:
+                user && user.photoURL
+                  ? user.photoURL
+                  : "images/avatar-placeholder.jpg",
             }}
           />
         </DropdownItem>
 
         <DropdownItem
-          key="new"
-          shortcut="⌘N"
-          description="Create a new file"
-          // startContent={<AddNoteIcon className={iconClasses} />}
+          key="settings"
+          shortcut="⌘S"
+          description="Update your account info"
+          //   startContent={}
+          classNames={{ title: "font-semibold" }}
         >
-          New file
+          Settings
         </DropdownItem>
 
         <DropdownItem
           key="copy"
           shortcut="⌘C"
-          description="Copy the file link"
+          //   description="Copy the file link"
           // startContent={<CopyDocumentIcon className={iconClasses} />}
+          classNames={{ title: "font-semibold" }}
         >
-          Copy link
+          Activities
         </DropdownItem>
 
         <DropdownItem
-          key="edit"
-          shortcut="⌘⇧E"
           showDivider
-          description="Allows you to edit the file"
+          key="notifications"
+          shortcut="⌘N"
           // startContent={<EditDocumentIcon className={iconClasses} />}
+          classNames={{ title: "font-semibold" }}
         >
-          Edit file
+          Notifications
         </DropdownItem>
 
         <DropdownSection className="mb-0">
-          <DropdownItem key="theme" isReadOnly className="cursor-default">
-            <ThemeSwitch />
+          <DropdownItem
+            color="danger"
+            variant="solid"
+            key="logout"
+            onClick={handleLogOut}
+            classNames={{
+              base: "bg-danger text-white",
+              title: "text-center font-semibold",
+            }}
+          >
+            Log out
           </DropdownItem>
         </DropdownSection>
       </DropdownMenu>

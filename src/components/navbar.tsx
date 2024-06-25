@@ -27,7 +27,7 @@ import {
   User,
 } from "@nextui-org/react";
 
-import { siteConfig } from "@/config/site";
+import { internalUrls, siteConfig } from "@/config/site";
 import clsx from "clsx";
 
 import { Logo } from "@/components/icons";
@@ -36,15 +36,14 @@ import { UserProfile } from "@/components/user_profile";
 import { usePathname } from "next/navigation";
 import { SingleThemeSwitch, ThemeSwitch } from "./theme-switch";
 import { SupportButton } from "./buttons";
+import { useAuth, useLoginRequired } from "@/app/auth_provider";
 
-export interface NavbarProps {
-  isLoggedIn?: boolean | undefined;
-}
 
-export const Navbar = ({ isLoggedIn }: NavbarProps) => {
+export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  const {user, loading} = useAuth();
   return (
     <NextUINavbar
       isBordered
@@ -130,12 +129,12 @@ export const Navbar = ({ isLoggedIn }: NavbarProps) => {
           <SingleThemeSwitch />
         </button>
 
-        {isLoggedIn ? (
-          <UserProfile />
+        {user ? (
+          <UserProfile user={user} />
         ) : (
           <Button
             as={NextLink}
-            href="/"
+            href={internalUrls.login}
             radius="sm"
             color="primary"
             variant="light"

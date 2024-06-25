@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import { Link } from "@nextui-org/link";
-import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -22,5 +20,5 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <div className="w-full max-w-xl mx-auto px-2 py-6">{children}</div>;
 }

@@ -1,6 +1,9 @@
+"use client";
+
 import NextLink from "next/link";
-import { Button } from "@nextui-org/react";
+import { Button, DropdownItem } from "@nextui-org/react";
 import { FiPhone } from "react-icons/fi";
+import { logOut } from "@/lib/authService";
 
 export const SupportButton = () => {
   return (
