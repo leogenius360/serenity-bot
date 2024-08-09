@@ -1,13 +1,9 @@
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { siteConfig, siteFooter } from "@/config/site";
-import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -32,8 +28,6 @@ export default function RootLayout({
       <body
         className={clsx(
           "min-h-screen bg-background font-sans antialiased flex flex-col justify-between",
-          fontSans.variable,
-          inter.className,
         )}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
