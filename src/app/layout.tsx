@@ -1,9 +1,11 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import clsx from "clsx";
+import { Navbar } from "@/components/navbar";
 import { siteConfig, siteFooter } from "@/config/site";
 import { Providers } from "./providers";
-import clsx from "clsx";
-import Link from "next/link";
-import { Navbar } from "@/components/navbar";
+import ChatOffcanvas from "@/components/chat";
 
 export const metadata: Metadata = {
   title: {
@@ -19,6 +21,11 @@ export const metadata: Metadata = {
   keywords: siteConfig.keywords,
 };
 
+const OnboardingProvider = dynamic(() => import("@/onboarding/provider"), {
+  ssr: false,
+  loading: () => <h6>Loading....</h6>,
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -27,12 +34,14 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased flex flex-col justify-between",
+          "min-h-screen bg-background relative font-sans antialiased flex flex-col justify-between",
         )}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           {children}
+          <OnboardingProvider />
+          <ChatOffcanvas />
         </Providers>
 
         <footer className="card border-0 border-t-1 border-primary py-3 px-4">

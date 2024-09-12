@@ -46,7 +46,7 @@ export const siteConfig = {
 export const siteFooter = {
     termsAndConditions: [
         {
-            label: "© 2024 Brainbox Research Institute",
+            label: "© 2024 Serenity Bot",
             href: internalUrls.home,
         },
         {
