@@ -7,13 +7,8 @@ import { Button } from "@nextui-org/react";
 import { FcGoogle } from "react-icons/fc";
 import { Divider } from "@/components";
 import { internalUrls } from "@/config/site";
-import {
-  handleAuthErrors,
-  loginAnonymously,
-  loginWithEmail,
-  loginWithGoogle,
-} from "@/auth/firebase";
-import { useAuth } from "@/app/auth_provider";
+import { useAuth } from "../../auth_provider";
+import { loginWithEmail, handleAuthErrors, loginWithGoogle, loginAnonymously } from "../../authService";
 
 export default function LoginPage() {
   const router = useRouter();

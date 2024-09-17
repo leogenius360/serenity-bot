@@ -1,11 +1,11 @@
 "use client";
 
-import { useAuth } from "@/app/auth_provider";
 import { TypeAnimation } from "react-type-animation";
 import { IoSend } from "react-icons/io5";
 import { VoiceRecorder } from "./recorder";
 import { ChangeEvent, useState } from "react";
 import { useRecorder } from "react-microphone-recorder";
+import { useAuth } from "@/auth/provider";
 
 export function WelcomePanel() {
   const { user } = useAuth();

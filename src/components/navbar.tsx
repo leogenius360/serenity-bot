@@ -34,9 +34,9 @@ import { Logo } from "@/components/icons";
 import { FiMenu, FiPhone, FiX } from "react-icons/fi";
 import { UserProfile } from "@/components/user_profile";
 import { usePathname } from "next/navigation";
-import { SingleThemeSwitch, ThemeSwitch } from "./theme-switch";
+import { useAuth } from "@/auth/provider";
+import { SingleThemeSwitch } from "./theme-switch";
 import { SupportButton } from "./buttons";
-import { useAuth, useLoginRequired } from "@/app/auth_provider";
 
 
 export const Navbar = () => {

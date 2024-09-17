@@ -1,48 +1,44 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, FormEvent } from "react";
 import NextLink from "next/link";
 import { Button } from "@nextui-org/react";
 import { FcGoogle } from "react-icons/fc";
 import { Divider } from "@/components";
 import { internalUrls } from "@/config/site";
-import {
-  handleAuthErrors,
-  loginAnonymously,
-  loginWithEmail,
-  loginWithGoogle,
-} from "@/auth/firebase";
-import { useAuth } from "@/app/auth_provider";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../auth_provider";
+import { signUpWithEmail, handleAuthErrors, loginWithGoogle, loginAnonymously } from "../../authService";
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const router = useRouter();
   const { user } = useAuth();
-  
-  if (user) router.back();
 
+  if (user) router.back();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [password2, setPassword2] = useState<string>("");
   const [errors, setErrors] = useState<string>("");
-
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    try {
-      const user = await loginWithEmail({ email, password });
-      router.back();
+    if (!(password === password2)) {
+      setErrors("Passwords not the same!");
       return;
+    }
+    try {
+      const user = await signUpWithEmail({ email, password });
+      router.back();
     } catch (error) {
       handleAuthErrors(error, setErrors);
-      return;
     }
   };
 
   const handleGoogleAuth = async () => {
     try {
       const user = await loginWithGoogle();
-      router.forward();
+      router.back();
     } catch (error) {
       handleAuthErrors(error, setErrors);
     }
@@ -60,9 +56,9 @@ export default function LoginPage() {
   return (
     <div className="card bg-transparent border-primary px-3 py-6 sm:px-6 sm:py-8 rounded-md">
       <div className="text-center">
-        <h6 className="font-bold">LOGIN</h6>
+        <h6 className="font-bold text-primary">SIGN UP</h6>
         <span className="inline-block text-sm font-semibold my-2">
-          Login for a better experience with serenity bot
+          Sign up for a better experience with serenity bot
         </span>
       </div>
 
@@ -121,6 +117,20 @@ export default function LoginPage() {
           />
         </div>
 
+        <div className="my-3">
+          <label className="block text-xs font-bold mb-2">
+            Confirm password
+          </label>
+          <input
+            type="password"
+            value={password2}
+            onChange={(e) => setPassword2(e.target.value)}
+            placeholder="Confirm password"
+            required
+            className="w-full border border-emerald-200 dark:border-emerald-700 rounded-md py-2 px-3 mb-3 leading-tight focus:outline-none focus:border-primary dark:focus:border-emerald-400 truncate"
+          />
+        </div>
+
         <Button
           type="submit"
           size="sm"
@@ -129,26 +139,18 @@ export default function LoginPage() {
           // radius="full"
           className="w-full my-3"
         >
-          Login
+          Sign up
         </Button>
       </form>
 
       <div className="m-auto first-line:font-normal text-center">
-        <span className="block m-1">
-          <NextLink
-            href={internalUrls.forgotPassword}
-            className="text-blue-500 hover:underline underline-offset-2"
-          >
-            Forgot your password
-          </NextLink>
-        </span>
         <span className="block">
-          Don&apos;s have an account?{" "}
+          Have an account already?{" "}
           <NextLink
-            href={internalUrls.signUp}
+            href={internalUrls.login}
             className="text-blue-500 hover:underline underline-offset-2"
           >
-            sign up
+            login
           </NextLink>
         </span>
       </div>

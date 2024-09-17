@@ -11,7 +11,7 @@ import {
   loginAnonymously,
   loginWithGoogle,
   signUpWithEmail,
-} from "@/lib/authService";
+} from "@/auth/firebase";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/auth_provider";
 

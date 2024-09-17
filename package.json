@@ -20,7 +20,8 @@
         "react-firebase-hooks": "^5.1.1",
         "react-icons": "^5.1.0",
         "react-microphone-recorder": "^1.0.0",
-        "react-type-animation": "^3.2.0"
+        "react-type-animation": "^3.2.0",
+        "undici": "6.17.0"
     },
     "devDependencies": {
         "@types/node": "^20",

@@ -1,4 +1,4 @@
-import { signUpWithEmail } from '@/lib/authService';
+import { signUpWithEmail } from '@/auth/firebase';
 import { FirebaseError } from 'firebase/app';
 
 export async function POST(req: Request) {

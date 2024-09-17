@@ -7,7 +7,7 @@ import { VoiceRecorder } from "./recorder";
 import { useState, ChangeEvent } from "react";
 import { useRecorder } from "react-microphone-recorder";
 import { TypeAnimation } from "react-type-animation";
-import { useAuth } from "@/app/auth_provider";
+import { useAuth } from "@/auth/provider";
 
 const ChatOffcanvas = () => {
   const { user } = useAuth();

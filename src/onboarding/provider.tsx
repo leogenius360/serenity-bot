@@ -11,7 +11,7 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { useAuth } from "@/app/auth_provider";
+import { useAuth } from "@/auth/provider";
 
 // Client Components:
 // const ComponentA = dynamic(() => import('../components/A'))

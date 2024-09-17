@@ -8,9 +8,9 @@ import {
   DropdownTrigger,
   User,
 } from "@nextui-org/react";
-import { logOut } from "@/lib/authService";
 import { internalUrls } from "@/config/site";
 import { useRouter } from "next/navigation";
+import { logOut } from "@/auth/firebase";
 
 export const UserProfile = ({ user }: { user: AuthUser }) => {
   const router = useRouter();

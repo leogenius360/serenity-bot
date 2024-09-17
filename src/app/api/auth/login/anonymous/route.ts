@@ -1,5 +1,5 @@
 
-import { loginAnonymously } from '@/lib/authService';
+import { loginAnonymously } from '@/auth/firebase';
 import { FirebaseError } from 'firebase/app';
 
 export async function POST(req: Request) {

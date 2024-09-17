@@ -1,5 +1,5 @@
 
-import { loginWithGoogle } from '@/lib/authService';
+import { loginWithGoogle } from '@/auth/firebase';
 import { FirebaseError } from 'firebase/app';
 
 export async function POST(req: Request) {
