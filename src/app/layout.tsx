@@ -6,6 +6,8 @@ import { Navbar } from "@/components/navbar";
 import { siteConfig, siteFooter } from "@/config/site";
 import { Providers } from "./providers";
 import ChatOffcanvas from "@/components/chat";
+import { LoadingState } from "@/components/loading";
+import OnboardingProvider from "@/onboarding/provider";
 
 export const metadata: Metadata = {
   title: {
@@ -21,11 +23,6 @@ export const metadata: Metadata = {
   keywords: siteConfig.keywords,
 };
 
-const OnboardingProvider = dynamic(() => import("@/onboarding/provider"), {
-  ssr: false,
-  loading: () => <h6>Loading....</h6>,
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -39,7 +36,9 @@ export default function RootLayout({
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          {children}
+          <div className="max-w-screen-2xl mx-auto p-4 lg:p-6 min-h-screen">
+            {children}
+          </div>
           <OnboardingProvider />
           <ChatOffcanvas />
         </Providers>

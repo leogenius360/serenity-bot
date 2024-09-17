@@ -1,47 +1,40 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import NextLink from "next/link";
 import {
   Button,
-  Input,
   Navbar as NextUINavbar,
   NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem,
-  useDisclosure,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
   DropdownSection,
   DropdownItem,
-  Avatar,
-  User,
 } from "@nextui-org/react";
 
-import { internalUrls, siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import clsx from "clsx";
 
 import { Logo } from "@/components/icons";
-import { FiMenu, FiPhone, FiX } from "react-icons/fi";
+import { FiMenu, FiX } from "react-icons/fi";
 import { UserProfile } from "@/components/user_profile";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/auth/provider";
 import { SingleThemeSwitch } from "./theme-switch";
 import { SupportButton } from "./buttons";
+import dynamic from "next/dynamic";
 
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  const AuthComponentsMounter = dynamic(() =>
+    import("@/auth/components").then((mod) => mod.AuthComponentsMounter),
+  );
 
   const {user, loading} = useAuth();
   return (
@@ -132,18 +125,7 @@ export const Navbar = () => {
         {user ? (
           <UserProfile user={user} />
         ) : (
-          <Button
-            as={NextLink}
-            href={internalUrls.login}
-            radius="sm"
-            color="primary"
-            variant="light"
-            size="sm"
-            // endContent={<FiChevronsRight />}
-            className="font-semibold text-sm text-primary"
-          >
-            Login
-          </Button>
+          <AuthComponentsMounter />
         )}
         <div className="hidden md:flex">
           <SupportButton />
