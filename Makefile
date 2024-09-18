@@ -22,6 +22,8 @@ setup: ## Set up your developement environment
 
 
 install: ## Install dependencies
+	chmod +x "$(CURDIR)/scripts/install-pnpm.sh"
+	"$(CURDIR)/scripts/install-pnpm.sh"
 	pnpm install
 
 build: ## Build the project
