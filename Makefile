@@ -20,10 +20,14 @@ help: ## Display all callable targets.
 setup: ## Set up your developement environment
 	code --uninstall-extension glenn2223.live-sass
 
-
 install: ## Install dependencies
+	# Check environment: if it's production, use --auto-confirm flag
 	chmod +x "$(CURDIR)/scripts/install-pnpm.sh"
-	"$(CURDIR)/scripts/install-pnpm.sh"
+	@if [ "$(ENV)" = "production" ]; then \
+		"$(CURDIR)/scripts/install-pnpm.sh" --auto-confirm; \
+	else \
+		"$(CURDIR)/scripts/install-pnpm.sh"; \
+	fi
 	pnpm install
 
 build: ## Build the project
