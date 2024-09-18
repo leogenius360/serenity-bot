@@ -22,15 +22,15 @@ setup: ## Set up your developement environment
 
 
 install: ## Install dependencies
-	npm install
+	pnpm install
 
 build: ## Build the project
-	npm run build
+	pnpm run build
 
 clean: ## Clean files
-	npm cache clean --force
+	pnpm cache clean --force
 
 deep-clean: ## Delete all node_modules and re-install them
-	npm cache clean --force
+	pnpm cache clean --force
 	rm -rf node_modules
-	npm install
+	pnpm install
