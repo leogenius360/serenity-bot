@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import RecordRTC from 'recordrtc';
+import RecordRTC from "recordrtc";
 
 interface UseAudioRecorder {
     startRecording: () => void;
