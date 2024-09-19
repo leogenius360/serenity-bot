@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 
 import { Button } from "@nextui-org/react";
@@ -5,9 +6,9 @@ import { IoSend } from "react-icons/io5";
 import { useState, ChangeEvent } from "react";
 import { useRecorder } from "react-microphone-recorder";
 import { TypeAnimation } from "react-type-animation";
-import { useAuth } from "@/auth/provider";
-import { VoiceRecorder } from "../recorder";
 import { twMerge } from "tailwind-merge";
+
+import { VoiceRecorder } from "../recorder";
 
 export function Message({
   msg,
@@ -40,7 +41,6 @@ export function Message({
 }
 
 const ChatTextarea = () => {
-  const { user } = useAuth();
   const [text, setText] = useState<string>("");
   const [textareaRows, setTextareaRows] = useState<number>(1);
   const [audio, setAudio] = useState<File | undefined>(undefined);
@@ -54,6 +54,7 @@ const ChatTextarea = () => {
     console.log(audioURL);
     console.log(audioFile?.size);
     const audioText = await audio?.text();
+
     text && audioText
       ? setText(`${text} ${audioText}`)
       : audioText
@@ -64,6 +65,7 @@ const ChatTextarea = () => {
   const textAreaAdjust = (event: ChangeEvent<HTMLTextAreaElement>) => {
     // event.preventDefault(); // Prevents the default action of adding a new line
     const rows = event.target.value.split(/\r*\n/).length;
+
     setTextareaRows(rows);
   };
 
@@ -73,7 +75,7 @@ const ChatTextarea = () => {
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} method="post" className="py-2">
+    <form method="post" className="py-2" onSubmit={(e) => e.preventDefault()}>
       <div className="flex flex-nowrap items-end w-full rounded-md border-1 border-emerald-400 hover:border-emerald-500">
         <span title="Record" className="p-1">
           <VoiceRecorder save={handleAudioSave} />
@@ -81,10 +83,10 @@ const ChatTextarea = () => {
         <textarea
           rows={textareaRows}
           value={text}
-          onChange={onTextChange}
           placeholder="Start your conversation ..."
           className="w-full h-full min-h-11 border-primary outline-none bg-transparent max-h-48 overflow-y-auto scrollbar-hide py-2 px-3"
-        ></textarea>
+          onChange={onTextChange}
+        />
         <Button
           type="submit"
           title="Send"

@@ -7,16 +7,11 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import { IoIosMic } from "react-icons/io";
-import {
-  IoMicCircleOutline,
-  IoMicSharp,
-  IoPauseCircle,
-  IoPlay,
-} from "react-icons/io5";
+import { IoMicSharp, IoPauseCircle, IoPlay } from "react-icons/io5";
 import { MdSaveAlt } from "react-icons/md";
 import { useRecorder } from "react-microphone-recorder";
 
@@ -29,10 +24,8 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
   const {
     startRecording,
     pauseRecording,
-    stopRecording,
     resetRecording,
     resumeRecording,
-    audioLevel,
     timeElapsed,
     recordingState,
     isRecording,
@@ -55,17 +48,17 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
         radius="sm"
         color="primary"
         variant="light"
-        onClick={reset}
-        onPress={onOpen}
         startContent={<IoMicSharp size={22} />}
         className="dark:text-white"
-      ></Button>
+        onClick={reset}
+        onPress={onOpen}
+      />
       <Modal
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
         isDismissable={false}
         isKeyboardDismissDisabled={true}
         backdrop="blur"
+        onOpenChange={onOpenChange}
       >
         <ModalContent>
           {(onClose) => (
@@ -90,9 +83,9 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
                   <Button
                     size="sm"
                     color="primary"
-                    onClick={startRecording}
                     startContent={<IoPlay size={16} />}
                     className="px-4"
+                    onClick={startRecording}
                   >
                     Start recording
                   </Button>
@@ -102,9 +95,9 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
                   <Button
                     size="sm"
                     color="primary"
-                    onClick={resumeRecording}
                     startContent={<IoPlay size={16} />}
                     className="px-4"
+                    onClick={resumeRecording}
                   >
                     Continue recording
                   </Button>
@@ -115,9 +108,9 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
                     size="sm"
                     color="danger"
                     variant="ghost"
-                    onClick={reset}
                     startContent={<FaTimes size={16} />}
                     className="font-bold gap-1"
+                    onClick={reset}
                   >
                     Cancel
                   </Button>
@@ -129,10 +122,10 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
                     size="lg"
                     radius="full"
                     color="primary"
-                    onClick={pauseRecording}
                     startContent={<IoPauseCircle size={28} />}
                     className=""
-                  ></Button>
+                    onClick={pauseRecording}
+                  />
                 )}
 
                 {recordingState === "recording" && (
@@ -140,10 +133,10 @@ export const VoiceRecorder: React.FC<VoiceRecorderProps> = ({ save }) => {
                     size="sm"
                     color="primary"
                     variant="ghost"
-                    onClick={save}
-                    onPress={onClose}
                     startContent={<MdSaveAlt size={16} />}
                     className="font-bold"
+                    onClick={save}
+                    onPress={onClose}
                   >
                     Save
                   </Button>

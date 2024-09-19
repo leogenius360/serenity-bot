@@ -8,9 +8,10 @@ import {
   Image,
 } from "@nextui-org/react";
 import Link from "next/link";
-import { Message } from "../forms/chat-input";
 import { IoIosHeart } from "react-icons/io";
 import { FiMoreVertical } from "react-icons/fi";
+
+import { Message } from "../forms/chat-input";
 
 interface ResourceCardProps {
   title: string;
@@ -82,27 +83,27 @@ export const ResourceCard = ({ props }: { props: ResourceCardProps }) => {
         </Button>
         <div className="flex flex-nowrap gap-2">
           <Button
+            isIconOnly
             as={Link}
             href={`resources/${props.title}/details`}
-            isIconOnly
-            size="sm"
-            // radius=""
-            color="primary"
             variant="ghost"
             startContent={<IoIosHeart size={16} />}
             className="dark:text-white"
-          ></Button>
-          <Button
-            as={Link}
-            href={`resources/${props.title}/details`}
-            isIconOnly
             size="sm"
             // radius=""
             color="primary"
+          />
+          <Button
+            isIconOnly
+            as={Link}
+            href={`resources/${props.title}/details`}
             variant="ghost"
             startContent={<FiMoreVertical size={16} />}
             className="dark:text-white"
-          ></Button>
+            size="sm"
+            // radius=""
+            color="primary"
+          />
         </div>
       </CardFooter>
     </Card>

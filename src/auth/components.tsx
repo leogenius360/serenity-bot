@@ -12,15 +12,11 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { FcGoogle } from "react-icons/fc";
-import { Divider } from "@/components";
 import clsx from "clsx";
-import {
-  handleAuthErrors,
-  loginAnonymously,
-  loginWithEmail,
-  loginWithGoogle,
-  signUpWithEmail,
-} from "./firebase";
+
+import { handleAuthErrors } from "./firebase";
+
+import { Divider } from "@/components/utils";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -32,43 +28,50 @@ export const LoginForm = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const user = await loginWithEmail({ email, password });
       router.back();
+
       return;
     } catch (error) {
       handleAuthErrors(error, setErrors);
+
       return;
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form className="" onSubmit={handleSubmit}>
       {errors && (
         <p className="text-center font-semibold text-sm text-danger pb-3">
           {errors}
         </p>
       )}
       <div className="">
-        <label className="block text-xs font-bold mb-2">Email</label>
+        <label htmlFor="email" className="block text-xs font-bold mb-2">
+          Email
+        </label>
         <input
+          required
+          id="email"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
           placeholder="Enter your email address..."
           className="w-full border border-emerald-200 dark:border-emerald-700 rounded-md py-2 px-3 mb-3 leading-tight focus:outline-none focus:border-primary dark:focus:border-emerald-400 truncate"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
       <div className="my-3">
-        <label className="block text-xs font-bold mb-2">Password</label>
+        <label htmlFor="password" className="block text-xs font-bold mb-2">
+          Password
+        </label>
         <input
+          required
+          id="password"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          required
           className="w-full border border-emerald-200 dark:border-emerald-700 rounded-md py-2 px-3 mb-3 leading-tight focus:outline-none focus:border-primary dark:focus:border-emerald-400 truncate"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
@@ -97,10 +100,10 @@ export const SignUpForm = () => {
     e.preventDefault();
     if (!(password === password2)) {
       setErrors("Passwords not the same!");
+
       return;
     }
     try {
-      const user = await signUpWithEmail({ email, password });
       router.back();
     } catch (error) {
       handleAuthErrors(error, setErrors);
@@ -108,45 +111,54 @@ export const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form className="" onSubmit={handleSubmit}>
       {errors && (
         <p className="text-center font-semibold text-sm text-danger pb-3">
           {errors}
         </p>
       )}
       <div className="">
-        <label className="block text-xs font-bold mb-2">Email</label>
+        <label htmlFor="email" className="block text-xs font-bold mb-2">
+          Email
+        </label>
         <input
+          required
+          id="email"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
           placeholder="Enter your email address..."
           className="w-full border border-emerald-200 dark:border-emerald-700 rounded-md py-2 px-3 mb-3 leading-tight focus:outline-none focus:border-primary dark:focus:border-emerald-400 truncate"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
       <div className="my-3">
-        <label className="block text-xs font-bold mb-2">Password</label>
+        <label htmlFor="password2" className="block text-xs font-bold mb-2">
+          Password
+        </label>
         <input
+          required
+          id="password2"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          required
           className="w-full border border-emerald-200 dark:border-emerald-700 rounded-md py-2 px-3 mb-3 leading-tight focus:outline-none focus:border-primary dark:focus:border-emerald-400 truncate"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
       <div className="my-3">
-        <label className="block text-xs font-bold mb-2">Confirm password</label>
+        <label htmlFor="password2" className="block text-xs font-bold mb-2">
+          Confirm password
+        </label>
         <input
+          required
+          id="password2"
           type="password"
           value={password2}
-          onChange={(e) => setPassword2(e.target.value)}
           placeholder="Confirm password"
-          required
           className="w-full border border-emerald-200 dark:border-emerald-700 rounded-md py-2 px-3 mb-3 leading-tight focus:outline-none focus:border-primary dark:focus:border-emerald-400 truncate"
+          onChange={(e) => setPassword2(e.target.value)}
         />
       </div>
 
@@ -171,7 +183,6 @@ export const AuthComponentsMounter = () => {
 
   const handleGoogleAuth = async () => {
     try {
-      const user = await loginWithGoogle();
       router.forward();
     } catch (error) {
       handleAuthErrors(error, setErrors);
@@ -180,7 +191,6 @@ export const AuthComponentsMounter = () => {
 
   const handleAnonymousAuth = async () => {
     try {
-      const user = await loginAnonymously();
       router.back();
     } catch (error) {
       handleAuthErrors(error, setErrors);
@@ -193,25 +203,25 @@ export const AuthComponentsMounter = () => {
         size="sm"
         radius="sm"
         color="primary"
-        onPress={onOpen}
         variant="light"
         // endContent={<FiChevronsRight />}
         className="font-semibold text-sm text-primary"
+        onPress={onOpen}
       >
         Login
       </Button>
 
       <Modal
+        // hideCloseButton
         size="xl"
         scrollBehavior="inside"
         isOpen={isOpen}
-        onOpenChange={onOpenChange}
         isDismissable={false}
         isKeyboardDismissDisabled={true}
-        // hideCloseButton
+        onOpenChange={onOpenChange}
       >
         <ModalContent className="border-1 border-emerald-600 h-screen">
-          {(onClose) => (
+          {() => (
             <>
               <ModalHeader className="flex flex-col gap-1 justify-center text-center">
                 AUTHENTICATION
@@ -226,9 +236,9 @@ export const AuthComponentsMounter = () => {
                     size="sm"
                     color="primary"
                     variant="ghost"
-                    onClick={handleAnonymousAuth}
                     className="border-1 font-semibold text-sx shadow-md"
                     startContent={<FcGoogle size={16} className="" />}
+                    onClick={handleAnonymousAuth}
                   >
                     Anonymous
                   </Button>
@@ -236,9 +246,9 @@ export const AuthComponentsMounter = () => {
                     size="sm"
                     color="primary"
                     variant="ghost"
-                    onClick={handleGoogleAuth}
                     className="border-1 font-semibold text-sx shadow-md"
                     startContent={<FcGoogle size={16} className="" />}
+                    onClick={handleGoogleAuth}
                   >
                     Google
                   </Button>
@@ -263,10 +273,10 @@ export const AuthComponentsMounter = () => {
                   size="sm"
                   color="primary"
                   variant={authState === "login" ? "flat" : "light"}
-                  onClick={(e) => setAuthSate("login")}
                   className={clsx(" rounded font-bold min-w-28", {
                     ["border-b-medium border-primary"]: authState === "login",
                   })}
+                  onClick={() => setAuthSate("login")}
                 >
                   Go to login
                 </Button>
@@ -274,10 +284,10 @@ export const AuthComponentsMounter = () => {
                   size="sm"
                   color="primary"
                   variant={authState === "signup" ? "flat" : "light"}
-                  onClick={(e) => setAuthSate("signup")}
                   className={clsx(" rounded font-bold min-w-28", {
                     ["border-b-medium border-primary"]: authState === "signup",
                   })}
+                  onClick={() => setAuthSate("signup")}
                 >
                   Go to sign up
                 </Button>

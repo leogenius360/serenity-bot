@@ -1,8 +1,6 @@
 import { Metadata } from "next";
+
 import { siteConfig } from "@/config/site";
-import clsx from "clsx";
-import { Navbar } from "@/components/navbar";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {

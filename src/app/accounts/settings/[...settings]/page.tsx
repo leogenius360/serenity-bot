@@ -1,4 +1,4 @@
-export function generateStaticParams({ params }: { params: { slug: string } }) {
+export function generateStaticParams({}: { params: { slug: string } }) {
   return [
     { slug: "leo" },
     { slug: "genius" },

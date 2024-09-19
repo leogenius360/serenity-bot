@@ -1,15 +1,6 @@
-import { Image } from "@nextui-org/react";
-import { ShowcaseTab } from "@/components/showcase";
-import { Logo } from "@/components/icons";
-import { siteConfig } from "@/config/site";
-
 export default function Home() {
   return (
     <>
-      <section className="mx-auto px-3">
-        <ShowcaseTab />
-      </section>
-
       <section className="pb-12 px-3">
         <div className="max-w-screen-2xl mx-auto">
           <h3 className="font-bold py-3">Current stock overview</h3>
@@ -131,7 +122,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-screen-2xl relative rounded-md bg-primary bg-opacity-85 mx-auto shadow-md drop-shadow-lg text-white px-3 my-12 lg:my-16">
-        <div className="bg-overlay bg-img-defaulf dark:bg-img-dark"></div>
+        <div className="bg-overlay bg-img-defaulf dark:bg-img-dark" />
         <div className="flex flex-wrap justify-around gap-4 px-3 py-6">
           <div className="text-center">
             <h3 className="font-bold">JOURNAL ARTICLES</h3>

@@ -2,8 +2,10 @@
 
 import { Button } from "@nextui-org/react";
 import { VscRobot } from "react-icons/vsc";
-import { useAuth } from "@/auth/provider";
+
 import ChatTextarea, { Message } from "./forms/chat-input";
+
+import { useAuth } from "@/auth/provider";
 
 const chatWelcome =
   "I can offer advice on anxiety and depression, answer mental health questions, and engage in supportive conversations. However, I am not a replacement for professional mental healthcare. If you need further assistance, I recommend seeking help from a qualified therapist or counselor.";
@@ -37,14 +39,14 @@ const ChatOffcanvas = () => {
       >
         <div className="offcanvas-header bg-default-50 drop-shadow-md">
           <h6 className="offcanvas-title font-bold" id="chatOffcanvasLabel">
-            Chat
+            {user?.displayName || user?.email}
           </h6>
           <button
             className="btn-close"
             type="button"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
-          ></button>
+          />
           <hr />
         </div>
         <div className="offcanvas-body flex flex-col gap-4 custom-scrollbar">

@@ -1,5 +1,6 @@
-import { siteConfig } from "@/config/site";
 import { Logo } from "./icons";
+
+import { siteConfig } from "@/config/site";
 
 export const TrustedBy = () => {
   return (

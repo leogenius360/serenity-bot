@@ -1,8 +1,3 @@
-"use server"
+"use server";
 
-
-
-
-export const signupAction = async () => {
-
-}
+export const signupAction = async () => {};

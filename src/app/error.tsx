@@ -1,12 +1,14 @@
 "use client";
 
-import { internalUrls } from "@/config/site";
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { useEffect } from "react";
 
+import { internalUrls } from "@/config/site";
+
 export default function GlobalError({
   error,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reset,
 }: {
   error: Error;
@@ -14,6 +16,7 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
+    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 

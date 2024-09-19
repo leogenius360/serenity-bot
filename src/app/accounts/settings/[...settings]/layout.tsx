@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-import { Link } from "@nextui-org/link";
-import clsx from "clsx";
+
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
   keywords: "Brainbox Research Institute",
 };
 
-export function generateStaticParams() {
+export function generateStaticParams({}: { params: { slug: string } }) {
   return [
     { slug: "leo" },
     { slug: "genius" },
@@ -33,5 +32,12 @@ export default function AccountSettingsLayout({
   children: React.ReactNode;
   params: { slug: string };
 }) {
-  return <>{children}</>;
+  const { slug } = params;
+
+  return (
+    <section>
+      {slug}
+      {children}
+    </section>
+  );
 }

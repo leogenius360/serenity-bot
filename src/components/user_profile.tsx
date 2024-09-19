@@ -8,8 +8,9 @@ import {
   DropdownTrigger,
   User,
 } from "@nextui-org/react";
-import { internalUrls } from "@/config/site";
 import { useRouter } from "next/navigation";
+
+import { internalUrls } from "@/config/site";
 import { logOut } from "@/auth/firebase";
 
 export const UserProfile = ({ user }: { user: AuthUser }) => {
@@ -17,15 +18,14 @@ export const UserProfile = ({ user }: { user: AuthUser }) => {
 
   const handleLogOut = async () => {
     logOut();
-    router.push(internalUrls.home)
-  }
-
+    router.push(internalUrls.home);
+  };
 
   return (
     <Dropdown
+      showArrow
       placement="bottom-end"
       offset={20}
-      showArrow
       shadow="md"
       closeOnSelect={false}
     >
@@ -98,8 +98,8 @@ export const UserProfile = ({ user }: { user: AuthUser }) => {
         </DropdownItem>
 
         <DropdownItem
-          showDivider
           key="notifications"
+          showDivider
           shortcut="⌘N"
           // startContent={<EditDocumentIcon className={iconClasses} />}
           classNames={{ title: "font-semibold" }}
@@ -109,14 +109,14 @@ export const UserProfile = ({ user }: { user: AuthUser }) => {
 
         <DropdownSection className="mb-0">
           <DropdownItem
+            key="logout"
             color="danger"
             variant="solid"
-            key="logout"
-            onClick={handleLogOut}
             classNames={{
               base: "bg-danger text-white",
               title: "text-center font-semibold",
             }}
+            onClick={handleLogOut}
           >
             Log out
           </DropdownItem>

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from "react";
 import RecordRTC from "recordrtc";
 
 interface UseAudioRecorder {
@@ -11,7 +11,7 @@ interface UseAudioRecorder {
     audioFile: File | null;
     transcription: string;
     isRecording: boolean;
-    recordingState: 'idle' | 'recording' | 'paused';
+    recordingState: "idle" | "recording" | "paused";
     timeElapsed: number; // Track elapsed time in seconds
 }
 
@@ -19,9 +19,12 @@ export const useAudioRecorder = (): UseAudioRecorder => {
     const [recorder, setRecorder] = useState<RecordRTC | null>(null);
     const [audioURL, setAudioURL] = useState<string | null>(null);
     const [audioFile, setAudioFile] = useState<File | null>(null);
-    const [transcription, setTranscription] = useState<string>('');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [transcription, setTranscription] = useState<string>("");
     const [isRecording, setIsRecording] = useState<boolean>(false);
-    const [recordingState, setRecordingState] = useState<'idle' | 'recording' | 'paused'>('idle');
+    const [recordingState, setRecordingState] = useState<
+        "idle" | "recording" | "paused"
+    >("idle");
     const [timeElapsed, setTimeElapsed] = useState<number>(0);
 
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -45,13 +48,15 @@ export const useAudioRecorder = (): UseAudioRecorder => {
     const startRecording = useCallback(() => {
         if (recorder) return;
 
-        navigator.mediaDevices.getUserMedia({ audio: true })
+        navigator.mediaDevices
+            .getUserMedia({ audio: true })
             .then((stream) => {
-                const newRecorder = new RecordRTC(stream, { type: 'audio' });
+                const newRecorder = new RecordRTC(stream, { type: "audio" });
+
                 setRecorder(newRecorder);
                 newRecorder.startRecording();
                 setIsRecording(true);
-                setRecordingState('recording');
+                setRecordingState("recording");
 
                 // Start the timer
                 setTimeElapsed(0);
@@ -59,7 +64,8 @@ export const useAudioRecorder = (): UseAudioRecorder => {
                 startTimer();
             })
             .catch((error) => {
-                console.error('Error accessing audio devices:', error);
+                // eslint-disable-next-line no-console
+                console.error("Error accessing audio devices:", error);
             });
     }, [recorder]);
 
@@ -70,12 +76,14 @@ export const useAudioRecorder = (): UseAudioRecorder => {
         recorder.stopRecording(() => {
             const blob = recorder.getBlob();
             const url = URL.createObjectURL(blob);
-            const file = new File([blob], 'recording.webm', { type: 'audio/webm' });
+            const file = new File([blob], "recording.webm", {
+                type: "audio/webm",
+            });
 
             setAudioURL(url);
             setAudioFile(file);
             setIsRecording(false);
-            setRecordingState('idle');
+            setRecordingState("idle");
 
             clearTimer();
 
@@ -89,7 +97,7 @@ export const useAudioRecorder = (): UseAudioRecorder => {
         if (!recorder || !isRecording || recordingState === "paused") return;
 
         recorder.pauseRecording();
-        setRecordingState('paused');
+        setRecordingState("paused");
         clearTimer(); // Pause timer
     }, [recorder, isRecording, recordingState]);
 
@@ -98,7 +106,7 @@ export const useAudioRecorder = (): UseAudioRecorder => {
         if (!recorder || recordingState === "recording") return;
 
         recorder.resumeRecording();
-        setRecordingState('recording');
+        setRecordingState("recording");
 
         // Restart the timer
         clearTimer();
@@ -114,7 +122,7 @@ export const useAudioRecorder = (): UseAudioRecorder => {
             setAudioFile(null);
             setIsRecording(false);
             setTimeElapsed(0);
-            setRecordingState('idle');
+            setRecordingState("idle");
             clearTimer(); // Reset timer
         });
     }, [recorder]);

@@ -1,4 +1,3 @@
-import { useAudioRecorder } from "./audio-recorder-hook"
+import { useAudioRecorder } from "./audio-recorder-hook";
 
-
-export { useAudioRecorder }
+export { useAudioRecorder };

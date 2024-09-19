@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { NextUIProvider } from "@nextui-org/system";
+
 import { AuthProvider } from "@/auth/provider";
 
 export function Providers({ children, ...themeProps }: ThemeProviderProps) {
   const router = useRouter();
+
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min");
   }, []);

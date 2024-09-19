@@ -1,8 +1,13 @@
-import { storage } from "@/config/firebase-config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
+import { storage } from "@/config/firebase-config";
 
-export const uploadIFile = async (file: File, type: string, onProgressChange?: (progress: number) => void, onError?: (error: string) => void,): Promise<string> => {
+export const uploadIFile = async (
+    file: File,
+    type: string,
+    onProgressChange?: (progress: number) => void,
+    onError?: (error: string) => void,
+): Promise<string> => {
     return new Promise((resolve, reject) => {
         const storageRef = ref(storage, `Resources::${type}/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
@@ -10,7 +15,10 @@ export const uploadIFile = async (file: File, type: string, onProgressChange?: (
         uploadTask.on(
             "state_changed",
             (snapshot) => {
-                onProgressChange && onProgressChange((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                onProgressChange &&
+                    onProgressChange(
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+                    );
             },
             (error) => {
                 onError && onError(error.message);

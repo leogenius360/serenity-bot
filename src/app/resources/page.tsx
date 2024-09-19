@@ -1,14 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { SupportButton } from "@/components/buttons";
-import { ResourceCard } from "@/components/cards/resource-card";
-import { siteConfig } from "@/config/site";
 import {
   Dropdown,
   DropdownTrigger,
   Button,
   DropdownMenu,
-  DropdownSection,
   DropdownItem,
   Input,
 } from "@nextui-org/react";
@@ -17,6 +14,9 @@ import { useMemo, useState } from "react";
 import { TbFilterSearch } from "react-icons/tb";
 import { TiFilter } from "react-icons/ti";
 import { CgSortAz } from "react-icons/cg";
+
+import { ResourceCard } from "@/components/cards/resource-card";
+import { siteConfig } from "@/config/site";
 
 export default function ResourcePage() {
   const [selectedKeys, setSelectedKeys] = useState<Set<string>>(new Set([]));
@@ -81,10 +81,10 @@ export default function ResourcePage() {
         />
 
         <Dropdown
+          showArrow
           placement="bottom-start"
           offset={16}
           crossOffset={-20}
-          showArrow
           radius="sm"
           shadow="md"
           // onOpenChange={setIsMenuOpen}

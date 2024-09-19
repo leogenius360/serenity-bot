@@ -14,19 +14,18 @@ import {
   DropdownSection,
   DropdownItem,
 } from "@nextui-org/react";
-
-import { siteConfig } from "@/config/site";
 import clsx from "clsx";
-
-import { Logo } from "@/components/icons";
 import { FiMenu, FiX } from "react-icons/fi";
-import { UserProfile } from "@/components/user_profile";
 import { usePathname } from "next/navigation";
-import { useAuth } from "@/auth/provider";
-import { SingleThemeSwitch } from "./theme-switch";
-import { SupportButton } from "./buttons";
 import dynamic from "next/dynamic";
 
+import { SingleThemeSwitch } from "./theme-switch";
+import { SupportButton } from "./buttons";
+
+import { siteConfig } from "@/config/site";
+import { Logo } from "@/components/icons";
+import { UserProfile } from "@/components/user_profile";
+import { useAuth } from "@/auth/provider";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +35,8 @@ export const Navbar = () => {
     import("@/auth/components").then((mod) => mod.AuthComponentsMounter),
   );
 
-  const {user, loading} = useAuth();
+  const { user } = useAuth();
+
   return (
     <NextUINavbar
       isBordered
@@ -46,15 +46,15 @@ export const Navbar = () => {
     >
       <NavbarContent className="gap-1">
         <Dropdown
+          showArrow
           placement="bottom-start"
           offset={16}
           crossOffset={-20}
-          showArrow
           radius="sm"
           shadow="md"
-          onOpenChange={setIsMenuOpen}
           isOpen={isMenuOpen}
           classNames={{ trigger: "md:hidden" }}
+          onOpenChange={setIsMenuOpen}
         >
           <DropdownTrigger>
             <Button isIconOnly size="sm" variant="light" aria-label="Menu">
@@ -122,11 +122,7 @@ export const Navbar = () => {
           <SingleThemeSwitch />
         </button>
 
-        {user ? (
-          <UserProfile user={user} />
-        ) : (
-          <AuthComponentsMounter />
-        )}
+        {user ? <UserProfile user={user} /> : <AuthComponentsMounter />}
         <div className="hidden md:flex">
           <SupportButton />
         </div>
