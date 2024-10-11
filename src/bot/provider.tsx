@@ -69,8 +69,8 @@ export const QnAProvider = ({ children }: { children: ReactNode }) => {
   const addConversation = (from: "chat" | "user", text: string) => {
     setConversations((prev) => [...prev, { from, text }]);
   };
-  //serenity-backend.onrender.com/predict/
-  https: const askQuestion = async (question: string) => {
+
+  const askQuestion = async (question: string) => {
     // Add the user's question to the conversation
     addConversation("user", question);
 
@@ -97,7 +97,10 @@ export const QnAProvider = ({ children }: { children: ReactNode }) => {
       addConversation("chat", bestAnswer);
     } catch (error) {
       console.error("Error processing question:", error);
-      addConversation("chat", "Sorry, something went wrong.");
+      addConversation(
+        "chat",
+        "Sorry, something went wrong, There was an error processing question.",
+      );
     }
   };
 
