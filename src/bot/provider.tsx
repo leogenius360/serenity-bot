@@ -69,19 +69,22 @@ export const QnAProvider = ({ children }: { children: ReactNode }) => {
   const addConversation = (from: "chat" | "user", text: string) => {
     setConversations((prev) => [...prev, { from, text }]);
   };
-
-  const askQuestion = async (question: string) => {
+  //serenity-backend.onrender.com/predict/
+  https: const askQuestion = async (question: string) => {
     // Add the user's question to the conversation
     addConversation("user", question);
 
     try {
-      const response = await fetch("http://localhost:8080/predict/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://serenity-backend.onrender.com/predict/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ text: question }),
         },
-        body: JSON.stringify({ text: question }),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Failed to get an answer");
