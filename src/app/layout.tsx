@@ -6,7 +6,6 @@ import { Providers } from "./providers";
 
 import { Navbar } from "@/components/navbar";
 import { siteConfig, siteFooter } from "@/config/site";
-import ChatOffcanvas from "@/components/chat";
 
 export const metadata: Metadata = {
   title: {
@@ -35,13 +34,12 @@ export default function RootLayout({
       >
         <Providers enableSystem attribute="class" defaultTheme="system">
           <Navbar />
-          <div className="max-w-screen-2xl mx-auto p-4 lg:p-6 min-h-screen">
+          <div className="max-w-screen-2xl mx-auto min-h-[28rem] p-4 lg:p-6">
             {children}
           </div>
-          <ChatOffcanvas />
         </Providers>
 
-        <footer className="card border-0 border-t-1 border-primary py-3 px-4">
+        <footer className="card border-0 border-t-1 border-primary py-3 px-4 mt-auto">
           <div className="max-w-screen-2xl mx-auto flex flex-wrap justify-center lg:justify-between gap-x-16 gap-y-2 text-sm">
             <div className="inline-flex flex-nowrap gap-x-4">
               {siteFooter.termsAndConditions.map((item) => (

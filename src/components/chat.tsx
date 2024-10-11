@@ -6,9 +6,49 @@ import { VscRobot } from "react-icons/vsc";
 import ChatTextarea, { Message } from "./forms/chat-input";
 
 import { useAuth } from "@/auth/provider";
+import { useQnA } from "@/bot/provider";
+import { useEffect, useRef } from "react";
 
-const chatWelcome =
-  "I can offer advice on anxiety and depression, answer mental health questions, and engage in supportive conversations. However, I am not a replacement for professional mental healthcare. If you need further assistance, I recommend seeking help from a qualified therapist or counselor.";
+
+export const ChatBotConversations = () => {
+  const { conversations } = useQnA();
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [conversations]); // Trigger scroll whenever conversations change
+
+  return (
+    <div className="flex flex-col space-y-2 pb-4">
+      {conversations.map((conv, index) =>
+        conv.from === "chat" ? (
+          <div key={index} className="w-11/12 max-w-[39rem] me-auto">
+            <Message
+              msg={conv.text}
+              className="max-h-40 overflow-y-auto custom-scrollbar"
+            />
+          </div>
+        ) : (
+          <div key={index} className="w-11/12 max-w-[39rem] ms-auto">
+            <Message
+              msg={conv.text}
+              className="max-h-40 overflow-y-auto custom-scrollbar"
+            />
+          </div>
+        ),
+      )}
+      {/* Invisible div to maintain scroll position */}
+      <div ref={messagesEndRef} />
+    </div>
+  );
+};
+
 
 const ChatOffcanvas = () => {
   const { user } = useAuth();
@@ -50,18 +90,7 @@ const ChatOffcanvas = () => {
           <hr />
         </div>
         <div className="offcanvas-body flex flex-col gap-4 custom-scrollbar">
-          <div className="w-11/12 me-auto ">
-            <Message
-              msg={chatWelcome}
-              className="max-h-40 overflow-y-auto custom-scrollbar"
-            />
-          </div>
-          <div className="w-11/12 ms-auto ">
-            <Message
-              msg={chatWelcome}
-              className="max-h-40 overflow-y-auto custom-scrollbar"
-            />
-          </div>
+          <ChatBotConversations />
         </div>
         <div className="offcanvas-footer bg-default-50 shadow-inner px-3 py-1">
           <ChatTextarea />

@@ -7,15 +7,15 @@ const nextConfig = {
         includePaths: ["styles"],
     },
 
-    // async redirects() {
-    //     return [
-    //         {
-    //             source: "/",
-    //             destination: "/home",
-    //             permanent: true,
-    //         }
-    //     ]
-    // }
+    async redirects() {
+        return [
+            {
+                source: "/",
+                destination: "/chat",
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default nextConfig;

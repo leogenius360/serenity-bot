@@ -25,21 +25,17 @@ export const siteConfig = {
     description: "A mental health support system designed to ...",
     navItems: [
         {
-            label: "Playgorund",
-            href: internalUrls.playgorund,
+            label: "Chat",
+            href: internalUrls.chat,
         },
         {
             label: "Resources",
             href: internalUrls.resources,
         },
-        {
-            label: "Chat",
-            href: internalUrls.chat,
-        },
-        {
-            label: "Docs",
-            href: internalUrls.docs,
-        },
+        // {
+        //     label: "Docs",
+        //     href: internalUrls.docs,
+        // },
     ],
 };
 
@@ -93,7 +89,7 @@ export const siteFooter = {
     ],
 
     developer: {
-        label: "Design & maintained by Genius Tech Space",
+        label: "Design & maintained by Team Serenity",
         href: internalUrls.home,
     },
 };

@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev --turbo",
+        "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
@@ -12,6 +12,8 @@
         "@nextui-org/react": "^2.4.8",
         "@react-aria/ssr": "3.9.4",
         "@react-aria/visually-hidden": "3.8.12",
+        "@tensorflow-models/qna": "^1.0.2",
+        "@tensorflow/tfjs": "^4.21.0",
         "bootstrap": "^5.3.3",
         "clsx": "^2.1.1",
         "firebase": "^10.13.2",
@@ -26,7 +28,6 @@
         "react-microphone-recorder": "^1.0.0",
         "react-type-animation": "^3.2.0",
         "recordrtc": "^5.6.2",
-        "sass": "^1.79.1",
         "tailwind-merge": "^2.5.2"
     },
     "devDependencies": {
@@ -49,6 +50,7 @@
         "eslint-plugin-unused-imports": "^3.2.0",
         "postcss": "8.4.38",
         "prettier": "^3.3.3",
+        "sass": "^1.79.1",
         "tailwind-variants": "0.1.20",
         "tailwindcss": "3.4.3",
         "typescript": "5.0.4"
