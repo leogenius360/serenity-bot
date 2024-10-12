@@ -43,57 +43,39 @@ export function Message({
 
 const ChatTextarea = () => {
   const { askQuestion } = useQnA();
-  const { stopRecording, audioURL, audioFile } = useRecorder();
-
   const [text, setText] = useState<string>("");
-  // const [textareaRows, setTextareaRows] = useState<number>(1);
-  const [audio, setAudio] = useState<File | undefined>(undefined);
-
-  // const handleAudioSave = async () => {
-  //   stopRecording();
-  //   audioFile && setAudio(audioFile);
-  //   console.log(audio);
-  //   console.log(audioFile);
-  //   console.log(audioURL);
-  //   console.log(audioFile?.size);
-  //   const audioText = await audio?.text();
-
-  //   text && audioText
-  //     ? setText(`${text} ${audioText}`)
-  //     : audioText
-  //       ? setText(audioText)
-  //       : null;
-  // };
-
-  // const textAreaAdjust = (event: ChangeEvent<HTMLTextAreaElement>) => {
-  //   // event.preventDefault(); // Prevents the default action of adding a new line
-  //   const rows = event.target.value.split(/\r*\n/).length;
-
-  //   setTextareaRows(rows);
-  // };
 
   const onTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
-    // textAreaAdjust(e);
   };
 
   const handleAskQuestion = async () => {
-    await askQuestion(text);
-    setText("");
+    if (text.trim()) {
+      await askQuestion(text);
+      setText(""); // Clear the text input after submitting
+    }
+  };
+
+  // Handle key press to distinguish between Enter and Shift+Enter
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); // Prevent default Enter behavior (new line)
+      handleAskQuestion(); // Trigger form submission
+    }
   };
 
   return (
     <form method="post" className="py-2" onSubmit={(e) => e.preventDefault()}>
       <Textarea
-        // rows={textareaRows}
-        maxRows={1}
         value={text}
+        maxRows={1}
         placeholder="Start your conversation ..."
         radius="sm"
         color="primary"
         variant="bordered"
         endContent={
           <Button
+            size="sm"
             type="submit"
             title="Send"
             radius="sm"
@@ -102,16 +84,21 @@ const ChatTextarea = () => {
             variant="light"
             onPress={handleAskQuestion}
           >
-            <IoSend size={22} />
+            <IoSend size={20} />
           </Button>
         }
         className="w-full"
         classNames={{
-          inputWrapper: "border-emerald-400 hover:border-emerald-500",
+          inputWrapper: "border-emerald-700 hover:border-emerald-800",
         }}
         onChange={(e) =>
           onTextChange(e as unknown as ChangeEvent<HTMLTextAreaElement>)
         }
+        onKeyDown={(e) =>
+          handleKeyPress(
+            e as unknown as React.KeyboardEvent<HTMLTextAreaElement>,
+          )
+        } // Attach the key press handler
       />
     </form>
   );

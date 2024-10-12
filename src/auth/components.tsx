@@ -14,7 +14,7 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import clsx from "clsx";
 
-import { handleAuthErrors } from "./firebase";
+import { handleAuthErrors, loginAnonymously, loginWithGoogle } from "./firebase";
 
 import { Divider } from "@/components/utils";
 
@@ -183,7 +183,7 @@ export const AuthComponentsMounter = () => {
 
   const handleGoogleAuth = async () => {
     try {
-      router.forward();
+      await loginWithGoogle()
     } catch (error) {
       handleAuthErrors(error, setErrors);
     }
@@ -191,7 +191,7 @@ export const AuthComponentsMounter = () => {
 
   const handleAnonymousAuth = async () => {
     try {
-      router.back();
+      await loginAnonymously()
     } catch (error) {
       handleAuthErrors(error, setErrors);
     }

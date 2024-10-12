@@ -77,7 +77,7 @@ export const UserProfile = ({ user }: { user: AuthUser }) => {
           />
         </DropdownItem>
 
-        <DropdownItem
+        {/* <DropdownItem
           key="settings"
           shortcut="⌘S"
           description="Update your account info"
@@ -105,7 +105,7 @@ export const UserProfile = ({ user }: { user: AuthUser }) => {
           classNames={{ title: "font-semibold" }}
         >
           Notifications
-        </DropdownItem>
+        </DropdownItem> */}
 
         <DropdownSection className="mb-0">
           <DropdownItem

@@ -8,8 +8,9 @@ export const SupportButton = () => {
   return (
     <Button
       as={NextLink}
+      target="_blank"
       size="sm"
-      href="/"
+      href="https://wa.me/233241301463"
       radius="full"
       color="primary"
       variant="ghost"
